@@ -1,38 +1,53 @@
+require('cypress-xpath');
+const S = require('../support/selectors'); // ajuste o caminho conforme necessário
 
+describe('Primeiros passos no Cypress', () => {
 
-/// <reference types="cypress" />
-
-
-describe('Auditoria completa do site', () => {
   beforeEach(() => {
-    cy.visit(URL, {
-      onBeforeLoad(win) {
-        cy.stub(win.console, 'error').as('consoleError');
-      }
-    });
-  });
+    cy.visit('https://kanban-dusky-five.vercel.app')
+  })
 
-  it('Não deve ter erros no console', () => {
-    cy.get('@consoleError').should('not.be.called');
-  });
+  const criarCard = (texto, colunaIndex = 0) => {
+    cy.get(S.colunaCard)
+      .eq(colunaIndex)
+      .should('be.visible')
+      .click()
 
-  it('Auditoria Lighthouse', () => {
-    cy.lighthouse({
-      performance: 50,
-      accessibility: 80,
-      'best-practices': 70,
-      seo: 80
-    }).then((report) => {
-      console.log('Lighthouse report:', report.lhr);
-    });
-  });
+    cy.get(S.inputCard)
+      .should('be.visible')
+      .clear()
+      .type(texto)
 
-  it('Auditoria de acessibilidade com axe', () => {
-    cy.injectAxe();
-    cy.checkA11y(null, null, (violations) => {
-      if (violations.length) {
-        cy.task('log', `${violations.length} problemas de acessibilidade encontrados.`);
-      }
-    });
-  });
-});
+    cy.get(S.btnSubmit)
+      .should('be.visible')
+      .click()
+  }
+
+  it('Cria múltiplos cards de forma estável', () => {
+    criarCard('novo card', 0)
+    criarCard('novo222', 2)
+    criarCard('novo222', 0)
+    criarCard('novo222', 2)
+
+    cy.xpath(S.cardArea).should('be.visible').click()
+    cy.xpath(S.cardColor0).click()
+    cy.xpath(S.cardForm).should('be.visible')
+    cy.xpath(S.cardFormInput).should('be.visible').type('Texto do card')
+    cy.get(S.btnSubmit).should('be.visible').click()
+  })
+
+  it('Cria um card usando outro botão de criar', () => {
+    cy.xpath(S.outroBotaoCriar).click()
+    cy.xpath(S.outroBotaoCriarInput)
+      .should('be.visible')
+      .clear()
+      .type('novo card')
+
+    cy.get(S.btnSubmit).should('be.visible').click()
+  })
+
+  it('Clica no card To Do Trash', () => {
+    cy.xpath(S.cardToDoTrash).should('be.visible').click()
+  })
+
+})
