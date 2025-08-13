@@ -23,7 +23,7 @@ Cada coluna permite adicionar novos cards com título e tags, bem como interagir
 ## ⚙️ Como Rodar o Projeto
 Clone o repositório:
 ```bash
-git clone <URL_DO_REPOSITORIO>
+git clone [<URL_DO_REPOSITORIO>](https://github.com/samsoaress/Tester-Junior-kukac.git)
 ```
 
 Instale as dependências:
