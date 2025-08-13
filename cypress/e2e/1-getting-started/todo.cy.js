@@ -1,6 +1,4 @@
 require('cypress-xpath');
-
-
 describe('Primeiros passos no Cypress', () => {
 
   beforeEach(() => {
