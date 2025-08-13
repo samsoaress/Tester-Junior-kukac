@@ -66,3 +66,41 @@ kanban-kukac/
 ## 💡 Observações
 - Este projeto é um teste prático, não possui back-end persistente; os dados são mantidos apenas em memória.
 - Foco principal do teste: organização, testes automatizados e interação com a interface.
+
+
+Auditoria de Site com Cypress, Lighthouse e axe
+
+Este projeto adiciona auditorias automatizadas ao Cypress, permitindo identificar problemas de **performance, SEO, boas práticas e acessibilidade** diretamente no site.
+
+---
+
+## 1️⃣ Instalação das dependências
+
+No diretório do projeto, execute:
+
+```bash
+npm install --save-dev @cypress-audit/lighthouse lighthouse chrome-launcher cypress-axe
+```
+---
+
+## 4️⃣ Executando os testes
+
+- **Modo UI**:
+
+```bash
+npx cypress open
+```
+
+- **Modo headless**:
+
+```bash
+npx cypress run
+```
+
+---
+
+## 5️⃣ Benefícios
+
+- Detecta **erros de console e scripts quebrados**.
+- Auditoria completa de **performance, SEO e boas práticas** via Lighthouse.
+- Checagem detalhada de **acessibilidade** via axe.
