@@ -1,6 +1,6 @@
 require('cypress-xpath');
 const S = require('../../support/selectors');
-const css = require('../../support/css');
+const styleCss = require('../../support/css');
 
 describe('Acessando Site', () => {
   beforeEach(() => {
@@ -60,7 +60,7 @@ describe('Acessando Site', () => {
       // cria o estilo com um ID para facilitar a remoção
       const style = doc.createElement('style');
       style.id = 'css-hover-forcado';
-      style.innerHTML = CSS.forceHover;
+      style.innerHTML = styleCss.forceHover;
       doc.head.appendChild(style);
     });
     cy.get('.content>header>.trash').click();
