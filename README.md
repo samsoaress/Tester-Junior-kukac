@@ -56,6 +56,7 @@ kanban-kukac/
 │  ├─ e2e/               # Testes end-to-end
 │  └─ support/
 │     └─ selectors.js    # Arquivo com seletores centralizados
+│     └─ css.js    # Arquivo com seletores centralizados
 ├─ src/
 │  ├─ components/        # Componentes React
 │  └─ styles/            # Arquivos de estilo
